@@ -37,7 +37,37 @@ let object3 = {
   "college": "University of Michigan"
 };
 let x = object3.name;
-object3.age;
-let namer = prompt("what is your query??")
 alert(`hi ${x}`);
-alert(object3[namer]);
+object3.age;
+//Can use variable that is prompted from user input to query object
+let nameq = prompt("what is your query??")
+alert(object3[nameq]);
+
+//Prompt for added value. This can be done with keys too
+let addition = prompt("what do you want to add?");
+object3.added = addition;
+alert(object3.added);
+console.log(object3);
+
+
+//Function that returns an object
+//short form (name of keys same as parameter names)
+function testObject(first, last, age, birthplace){
+  return {
+    age,
+    first,
+    last,
+    birthplace
+  };
+}
+
+let object4 = testObject("John","Doe",20, "New York");
+
+
+//For...in loop
+for(let key in object4){
+  console.log(typeof object4[key]);
+  if(typeof object4[key] == "number"){
+    object4[key] = 100;
+  }
+}
