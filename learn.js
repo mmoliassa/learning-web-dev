@@ -15,7 +15,7 @@ else if(response == ""|| response == null){
   alert("Canceled");
 }
 else{
-  alert("Ion Know You");
+  alert("I Don't Know You");
 }
 
 
