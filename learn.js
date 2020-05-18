@@ -1,3 +1,5 @@
+"use strict";
+
 let response = prompt("Who's There?");
 if(response === "Admin"){
   let password = prompt("Password");
@@ -65,9 +67,44 @@ let object4 = testObject("John","Doe",20, "New York");
 
 
 //For...in loop
+//Loops through all the keys in the object
+
 for(let key in object4){
   console.log(typeof object4[key]);
   if(typeof object4[key] == "number"){
     object4[key] = 100;
   }
 }
+
+
+//Object Copying and References
+
+//Object Methods
+
+let object5 = {
+  name: "John",
+  last: "Doe",
+  age: 30,
+  son:{
+    name: "Bob",
+    age: 1
+  }
+};
+
+//function specific to the object
+object5.getName = function(){
+  console.log(object5.name);
+};
+
+//general function added as a property of the object
+function getProp(object,property){
+  return object[property];
+}
+function sayName(){
+  console.log(this.name);
+}
+
+object5.sayName = sayName;
+let test = getProp(object5,"age");
+console.log(test);
+object5.sayName(); //Shows name of object called on
