@@ -108,3 +108,187 @@ object5.sayName = sayName;
 let test = getProp(object5,"age");
 console.log(test);
 object5.sayName(); //Shows name of object called on
+
+
+
+//4.4 Exercises
+
+//Calculator
+let calculator = {
+  read(){
+    this.object1 = +prompt("Give First Value");
+    this.object2 = +prompt("Give Second Value");
+  },
+  sum(){
+    return Number(this.object1) + Number(this.object2);
+  },
+  mul(){
+    return this.object1 * this.object2;
+  }
+};
+calculator.read();
+alert( calculator.sum() );
+alert( calculator.mul() );
+
+
+//4.5 Exercises
+
+//Calc Constructor
+function Calculator(){
+  this.read = function() {
+    this.val1 = +prompt("val 1?");
+    this.val2 = +prompt("val 2?");
+  }
+  this.sum = function() {
+    return this.val1 + this.val2;
+  }
+  this.mul = function(){
+    return this.val1 * this.val2
+  }
+}
+let calculator = new Calculator();
+calculator.read();
+
+alert( "Sum=" + calculator.sum() );
+alert( "Mul=" + calculator.mul() );
+
+//Accumulator
+function Accumulator(startingValue){
+  this.value = startingValue;
+  this.read = function(){
+    this.value+=(+prompt("Give a number"));
+  }
+}
+let accumulator = new Accumulator(1); // initial value 1
+
+accumulator.read(); // adds the user-entered value
+accumulator.read(); // adds the user-entered value
+
+alert(accumulator.value); // shows the sum of these values
+
+
+//Arrays
+
+let arr = [1,2,3,4,5];
+arr.push(6);
+let x = arr.shift();
+arr.unshift(8);
+console.log(arr);
+console.log(x);
+
+//Exercises
+
+let arr = [];
+arr.push(function sumInput() {
+  let addition = prompt("Give a number");
+  //console.log(typeof addition);
+  //console.log(addition != null);
+  let sum = 0;
+  while(typeof addition == "number" && addition != null && addition != ""){
+    arr.push(+addition);
+    sum+=addition;
+    addition = prompt("Number");
+  }
+  return sum;
+})
+arr[0]();
+
+
+
+//Find and filter
+
+let usernmames = [
+  {name:"Bob", id: 1},
+  {name:"Phil", id: 2},
+  {name:"Tom", id: 3},
+  {name:"Joe", id: 4},
+  {name:"Bob", id: 5},
+  {name:"James", id: 6},
+  {name:"James", id: 7},
+  {name:"Bob", id: 8},
+  {name:"John", id: 9},
+  {name:"Mike", id: 10},
+];
+let bobAndJames = usernames.filter(person => person.name == "Bob" || person.name == "James");
+console.log(bobAndJames);
+let bob = usernames.find(person => person.name == "Bob");
+console.log(bob);
+
+//Array Exercises
+
+function camelize(str){
+  let arr = str.split('-');
+  let arr2 = arr.map((s,index) => (index == 0)? s: s[0].toUpperCase() + s.slice(1));
+  arr2.forEach(alert);
+  return arr2.join("");
+}
+
+//filter range
+
+let filterRange = (arr, a, b) => arr.filter(value => value<=b && value>=a);
+
+let arr = [5, 3, 8, 1];
+
+let filtered = filterRange(arr, 1, 4);
+
+alert( filtered ); // 3,1 (matching values)
+
+alert( arr ); // 5,3,8,1 (not modified)
+
+//filter in place
+
+function filterRangeInPlace(arr, a, b){
+  for(let i = 0; i<arr.length; ++i){
+    let
+  }
+}
+
+//copy and sort Array
+
+copySorted(arr){
+  let reverse = arr.slice();
+  return reverse.sort();
+}
+let arr = ["HTML", "JavaScript", "CSS"];
+
+let sorted = copySorted(arr);
+
+alert( sorted ); // CSS, HTML, JavaScript
+alert( arr ); // HTML, JavaScript, CSS (no changes)
+
+
+//Map to names
+
+let john = { name: "John", age: 25 };
+let pete = { name: "Pete", age: 30 };
+let mary = { name: "Mary", age: 28 };
+
+let users = [ john, pete, mary ];
+
+let names = users.map(item => item.name);/* ... your code */
+
+alert( names ); // John, Pete, Mary
+
+//Map to Objects
+
+let john = { name: "John", surname: "Smith", id: 1 };
+let pete = { name: "Pete", surname: "Hunt", id: 2 };
+let mary = { name: "Mary", surname: "Key", id: 3 };
+
+let users = [ john, pete, mary ];
+
+let usersMapped = users.map(item => {
+  fullname: item.name+" "+item.surname,
+  id: item.id});/* ... your code ... */
+
+
+/*
+usersMapped = [
+  { fullName: "John Smith", id: 1 },
+  { fullName: "Pete Hunt", id: 2 },
+  { fullName: "Mary Key", id: 3 }
+]
+*/
+
+alert( usersMapped[0].id ) // 1
+alert( usersMapped[0].fullName ) // John Smith
