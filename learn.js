@@ -292,3 +292,65 @@ usersMapped = [
 
 alert( usersMapped[0].id ) // 1
 alert( usersMapped[0].fullName ) // John Smith
+
+
+
+//MAPS
+
+//Unique values
+function unique(arr){
+  let s1 = new Set(arr);
+  let output = [];
+  for(element of s1){
+    output.push(element);
+  }
+  return output;
+}
+
+//Better code
+return Array.from(new Set(arr));
+
+
+let values = ["Hare", "Krishna", "Hare", "Krishna",
+  "Krishna", "Krishna", "Hare", "Hare", ":-O"
+];
+
+alert( unique(values) ); // Hare, Krishna, :-O
+
+
+//Object iteration
+
+function sumSalaries(salaries){
+  let sum = 0;
+  for(let value of Object.values(salaries)){
+    sum+=value;
+  }
+  return sum;
+}
+
+//Destructuring
+
+let user = {
+  name: "John",
+  years: 30
+};
+let [name, age, isAdmin = false] = user;
+alert( name ); // John
+alert( age ); // 30
+alert( isAdmin ); // false
+
+let salaries = {
+  "John": 100,
+  "Pete": 300,
+  "Mary": 250
+};
+
+function topSalary(salaries){
+  let max = 0;
+  let mName = null;
+  for(let [name,value] of Object.entries(salaries)){
+    if(value > max) max = value;
+    mName = name;
+  }
+  return mName;
+}
