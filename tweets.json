@@ -1,0 +1,12 @@
+{
+"tweets": [
+  {
+    "author": "A",
+    "content": "Hello"
+  },
+  {
+    "author": "A",
+    "content": "World"
+  }
+]
+}
