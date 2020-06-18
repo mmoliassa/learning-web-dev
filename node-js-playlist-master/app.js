@@ -189,7 +189,7 @@ let server = http.createServer(function(request,response){
 });
 
 server.listen(3000, "127.0.0.1");
-console.log("Now listening to Port 3000");
+console.log("Now listening to Port 0");
 
 
 
@@ -203,6 +203,47 @@ let server2 = http.createServer(function(request,response){
 });
 
 server2.listen(3001, "127.0.0.1");
-console.log("Now listening to Port 3000");
+console.log("Now listening to Port 3001");
 
 //18. JSON
+
+let server3 = http.createServer(function(request,response){
+  console.log("request was made: " + request.url);
+  response.writeHead(200,{"content-type": "application/json"}) //Setup response headers
+  let obj = {
+      name: "Joe",
+      job: "Ninja",
+      age: 15
+  };
+  //Want to send this object back as json to the client
+  response.end(JSON.stringify(obj));
+});
+server3.listen(3002, "127.0.0.1");
+console.log("Now listening to Port 3002");
+
+let server4 = http.createServer(function(req, response){
+  console.log("request was made: " + req.url);
+  console.log(req.url);
+  if(req.url === '/home' || req.url === '/'){ //THIS IS A ROUTE
+    response.writeHead(200, {"Content-Type": "text/html"});
+    //Create read stream for html, pipe to the response object
+    fs.createReadStream(__dirname + "/index.html").pipe(response);
+    //response.end()
+  }
+  else if(req.url === "/contact"){
+    response.writeHead(200, {"Content-Type": "text/html"});
+    fs.createReadStream(__dirname + "/contact.html").pipe(response);
+  }
+  else if(req.url === "/api/ninjas"){
+    //USUALLY GET THIS DATA FROM A DB, not making it here
+    let ninhas = [{name: "ryu", age: 30}, {name: "hi", age: 10}];
+    response.writeHead(200, {"Content-Type": "application/json"});
+    response.end(JSON.stringify(ninhas));
+  }
+  else{
+    response.writeHead(404, {"Content-Type": "text/html"});
+    fs.createReadStream(__dirname + "/404.html").pipe(response);
+  }
+});
+server4.listen(3003, "127.0.0.1");
+console.log("Now listening to Port 3003");
